@@ -1,6 +1,8 @@
-<div>
-    <h1>{{ title }}</h1>
-    <img src={{imagePath}}>&nbsp;&nbsp;
-    <a [routerLink]="['/dashboard']">Dashboard</a>&nbsp;&nbsp;
-    <a [routerLink]="['/about']">About</a>
-</div>
+<mat-toolbar>
+    <img src={{imagePath}}>
+    <span class = "ms-1">{{ title }}</span>
+    <div class = "ms-2">
+        <a mat-button [routerLink]="['/dashboard']">Dashboard</a>
+    <a mat-button [routerLink]="['/about']">About</a>
+    </div>
+</mat-toolbar>

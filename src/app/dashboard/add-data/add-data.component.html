@@ -1,11 +1,74 @@
-<form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
-    <h2>Zum Kurs anmelden!</h2>
-    <input placeholder="Name" type="input" formControlName="name"><br />
-    <input placeholder="Geburtsdatum" type="date" formControlName="birthdate"><br />
-    <select formControlName="courseId">
-        <option value="" disabled>Bitte auswählen</option>
-        <option *ngFor="let course of storeService.courses" [ngValue]="course.id">{{course.name}}, {{course.instructor}}</option>
-    </select>
+<div class="container d-flex align-items-center justify-content-center">
+    <div class="col-12 col-md-8 col-lg-6 p-4 shadow rounded">
+      <h2 class="text-center mb-4">Zum Kurs anmelden!</h2>
 
-    <button type="submit">Erfassen</button>
-</form>
+  
+      <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+        <!-- Name -->
+        <div class="mb-3">
+          <label for="name" class="form-label">Name</label>
+          <input id="name" type="text" class="form-control" formControlName="name" placeholder="Name eingeben" />
+          <div *ngIf="registrationForm.get('name')?.errors && registrationForm.get('name')?.touched" class="text-danger">
+            <small *ngIf="registrationForm.get('name')?.hasError('required')">Der Name ist erforderlich.</small>
+            <small *ngIf="registrationForm.get('name')?.hasError('minLength')">Der Name muss mindestens 2 Zeichen lang sein.</small>
+            <small *ngIf="registrationForm.get('name')?.hasError('pattern')">Bitte nur Buchstaben und Leerzeichen verwenden.</small>
+          </div>
+        </div>
+  
+        <!-- Geburtsdatum -->
+        <div class="mb-3">
+          <label for="birthdate" class="form-label">Geburtsdatum</label>
+          <input id="birthdate" type="date" class="form-control" formControlName="birthdate" />
+          <div *ngIf="registrationForm.get('birthdate')?.errors && registrationForm.get('birthdate')?.touched" class="text-danger">
+            <small *ngIf="registrationForm.get('birthdate')?.hasError('required')">Das Geburtsdatum ist erforderlich.</small>
+            <small *ngIf="registrationForm.get('birthdate')?.hasError('invalidBirthdate')">Das Geburtsdatum darf nicht in der Zukunft liegen.</small>
+          </div>
+        </div>
+  
+        <!-- E-Mail -->
+        <div class="mb-3">
+          <label for="email" class="form-label">E-Mail</label>
+          <input id="email" type="email" class="form-control" formControlName="email" placeholder="E-Mail-Adresse" />
+          <div *ngIf="registrationForm.get('email')?.invalid && registrationForm.get('email')?.touched" class="text-danger">
+            Bitte eine gültige E-Mail-Adresse eingeben.
+          </div>
+        </div>
+  
+        <!-- Kursauswahl -->
+        <div class="mb-3">
+          <label for="course" class="form-label">Kurs auswählen</label>
+          <select id="course" class="form-select" formControlName="courseId">
+            <option value="" disabled>Bitte auswählen</option>
+            <option *ngFor="let Kurs of storeService.courses" value="{{Kurs.id}}">{{Kurs.name}}</option>
+          </select>
+        </div>
+  
+        <!-- Telefonnummer -->
+        <div class="mb-3">
+          <label for="phone" class="form-label">Telefonnummer</label>
+          <input id="phone" type="tel" class="form-control" formControlName="phone" placeholder="Telefonnummer eingeben" />
+          <div *ngIf="registrationForm.get('phone')?.invalid && registrationForm.get('phone')?.touched" class="text-danger">
+            Telefonnummer ist erforderlich und muss zwischen 9 und 15 Ziffern enthalten.
+        </div>
+        </div>
+  
+        <!-- Newsletter -->
+        <div class="mb-3 form-check">
+          <input id="newsletter" type="checkbox" class="form-check-input" formControlName="newsletter" />
+          <label for="newsletter" class="form-check-label">Newsletter abonnieren</label>
+        </div>
+  
+        <!-- Nachricht -->
+        <div class="mb-3">
+          <label for="message" class="form-label">Nachricht</label>
+          <textarea id="message" class="form-control" formControlName="message" rows="3" placeholder="Ihre Nachricht"></textarea>
+        </div>
+  
+        <!-- Submit -->
+        <div class="d-grid">
+          <button type="submit" class="btn btn-primary" [disabled]="registrationForm.invalid">Erfassen</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">  <div class="modal-dialog">    <div class="modal-content">      <div class="modal-header">        <h1 class="modal-title fs-5" id="exampleModalLabel">Buchung bestätigt!</h1>        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>      </div>      <div class="modal-body">        Danke für deine Buchung!      </div>      <div class="modal-footer">        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Stornieren</button>        <button type="button" class="btn btn-primary">OK</button>      </div>    </div>  </div></div>

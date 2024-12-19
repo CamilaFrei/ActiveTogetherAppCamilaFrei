@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { StoreService } from './store.service';
 import { Course } from './Interfaces/Course';
 import { Registration } from './Interfaces/Registration';
+import { map, Observable, of } from 'rxjs';
+import { error } from 'console';
 
 @Injectable({
   providedIn: 'root'
@@ -14,8 +16,13 @@ export class BackendService {
   public getCourses() {
       this.http.get<Course[]>('http://localhost:5000/courses?_expand=eventLocation').subscribe(data => {
         this.storeService.courses = data;
-        this.storeService.cousesLoading = false;
-      });
+        this.storeService.couesesLoading= false;
+      },
+      error => {
+        console.error('Fehler beim Laden der Kurse:', error); 
+        this.storeService.couesesLoading = false;
+      }
+    );
   }
 
   public getRegistrations(page: number) {
@@ -34,9 +41,13 @@ export class BackendService {
     });
   }
 
-  public addRegistration(registration: any, page: number) {
-    this.http.post('http://localhost:5000/registrations', registration).subscribe(_ => {
-      this.getRegistrations(page);
-    })
+  public addRegistration(registration: any, page: number):Observable<boolean> {
+    return this.http.post<any>('http://localhost:5000/registrations', registration).pipe( 
+      map(()=>{
+        this.getRegistrations(page);
+        return true;
+      }))
+      
+      
   }
 }

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component,OnInit } from '@angular/core';
 import { SharedModule } from '../../shared/shared.module';
 import { StoreService } from '../../shared/store.service';
 import { BackendService } from '../../shared/backend.service';
@@ -11,24 +11,32 @@ import { BackendService } from '../../shared/backend.service';
   styleUrl: './data.component.css'
 })
 export class DataComponent {
+  constructor(
+    public storeService: StoreService,
+    private backendService: BackendService
+  ) {}
 
-  constructor(public storeService: StoreService, private backendService: BackendService) {}
-
-  public page: number = 0;
-
-  selectPage(i: any) {
-    let currentPage = i;
-    this.storeService.currentPage = i;
-    this.backendService.getRegistrations(currentPage);
+  ngOnInit(): void {
+    this.loadData();
   }
 
-  public returnAllPages() {
-    var pagesCount = Math.ceil(this.storeService.registrationTotalCount / 2);
-    let res = [];
-    for (let i = 0; i < pagesCount; i++) {
-        res.push(i + 1);
-      }
-    return res;
+  // Lädt die Kurse und Registrierungen
+  loadData(): void {
+    this.backendService.getCourses();
+    this.backendService.getRegistrations(this.storeService.currentPage);
   }
 
+  // Pagination: Alle Seiten berechnen
+  returnAllPages(): number[] {
+    const totalPages = Math.ceil(this.storeService.registrationTotalCount / 2); // 2 pro Seite
+    return Array.from({ length: totalPages }, (_, i) => i + 1);
+  }
+
+  // Seite wechseln und Registrierungen laden
+  selectPage(page: number): void {
+    this.storeService.currentPage = page;
+    this.storeService.registrationsLoading = true;
+    this.backendService.getRegistrations(page);
+  }
+  
 }
