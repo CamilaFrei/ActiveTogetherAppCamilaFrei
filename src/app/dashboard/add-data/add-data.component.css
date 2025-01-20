@@ -1,0 +1,44 @@
+/* Standard-Schalter-Design */
+.form-check-input {
+    width: 50px;
+    height: 25px;
+    background-color: #ccc; /* Standard grau */
+    border-radius: 25px;
+    position: relative;
+    appearance: none;
+    -webkit-appearance: none;
+    outline: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  /* Aktivierter Zustand (Grün für abonniert) */
+  .form-check-input:checked {
+    background-color: #28a745; /* Grün */
+  }
+  
+  /* Schaltergriff */
+  .form-check-input::before {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 21px;
+    height: 21px;
+    background-color: white;
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+  }
+  
+  /* Griff verschieben bei aktiviertem Zustand */
+  .form-check-input:checked::before {
+    transform: translateX(25px);
+  }
+  
+  /* Label für den Schalter */
+  .form-check-label {
+    margin-left: 10px;
+    font-size: 1rem;
+    color: #333;
+  }
+  

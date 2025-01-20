@@ -31,7 +31,8 @@ export class AddDataComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]], // E-Mail mit Validierung
       phone: ['', [Validators.required, Validators.pattern(/^[0-9\-\+]{9,15}$/)]], // Telefonnummer
       newsletter: [false], // Newsletter ist optional
-      message: ['', Validators.maxLength(500)] // Nachricht (max. 500 Zeichen)
+      message: ['', Validators.maxLength(500)],// Nachricht (max. 500 Zeichen)
+      registrationDate: ['']  // Hinzugefügt: Anmeldedatum
     });
     this.backendService.getCourses();
     this.backendService.getRegistrations(this.storeService.currentPage);
@@ -40,6 +41,7 @@ export class AddDataComponent implements OnInit {
  // Methode zum Absenden des Formulars
   onSubmit() {
     if(this.registrationForm.valid) {
+      this.registrationForm.patchValue({registrationDate: new Date()})
       this.backendService.addRegistration(this.registrationForm.value, this.storeService.currentPage).subscribe(result=>{
         if(result){
           var modal = document.getElementById("successModal") as HTMLElement;

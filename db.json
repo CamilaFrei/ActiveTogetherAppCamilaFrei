@@ -71,32 +71,26 @@
   ],
   "registrations": [
     {
-      "id": "1",
-      "name": "Testuser",
-      "birthdate": "2024-11-13",
-      "courseId": "_iL775j"
-    },
-    {
-      "name": "Julia Schabasser",
-      "courseId": "_iL775i",
-      "birthdate": "1995-02-23",
-      "id": "2"
-    },
-    {
-      "name": "Julia Schabasser",
+      "id": "043d",
+      "name": "Celenia Knauder",
       "courseId": "_iL775a",
-      "birthdate": "1995-02-23",
-      "id": "3"
+      "birthdate": "2025-02-01",
+      "email": "2310859014@fh-burgenland.at",
+      "phone": "5000999999999",
+      "newsletter": true,
+      "message": "test",
+      "registrationDate": "2025-01-19"
     },
     {
-      "name": "Camila Frei",
-      "courseId": "_iL775j",
-      "birthdate": "2024-12-22",
+      "id": "af8f",
+      "name": "Zäsar",
+      "courseId": "_iL775i",
+      "birthdate": "2025-01-23",
       "email": "2310859014@fh-burgenland.at",
-      "phone": "5000998989",
+      "phone": "5000999999999",
       "newsletter": true,
-      "message": "Hallo!",
-      "id": "sBFcySf"
+      "message": "3423483894",
+      "registrationDate": "2025-01-20"
     }
   ]
 }

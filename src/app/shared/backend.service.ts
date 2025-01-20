@@ -34,10 +34,11 @@ export class BackendService {
       }
     };
 
-    this.http.get<Registration[]>(`http://localhost:5000/registrations?_expand=course&_page=${page}&_limit=2`, options).subscribe(data => {
+    this.http.get<Registration[]>(`http://localhost:5000/registrations?_expand=course&_page=${page}&_limit=2&_sort=registrationDate&_order=${this.storeService.sortOrder}`, options).subscribe(data => {
       this.storeService.registrations = data.body!;
       this.storeService.registrationTotalCount = Number(data.headers.get('X-Total-Count'));
       this.storeService.registrationsLoading = false;
+
     });
   }
 
@@ -50,4 +51,8 @@ export class BackendService {
       
       
   }
+  deleteRegistration(registrationId: string): Observable<any> {
+    return this.http.delete(`http://localhost:5000/registrations/${registrationId}`);
+  }
+  
 }

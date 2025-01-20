@@ -1,9 +1,71 @@
+data compoent css
+
 .table {
-    margin: auto;
-    text-align: center;
-  }
-  
-  button {
-    margin-right: 5px;
-  }
-  
+  margin: auto;
+  text-align: center;
+}
+
+button {
+  margin-right: 5px;
+}
+
+/* Hintergrundfarbe für Tabellenüberschriften */
+.table thead th {
+  background-color: #d9edf7; /* Hellblau */
+  color: #31708f; /* Dunkelblauer Text */
+  text-align: center; /* Zentrierter Text */
+  padding: 10px; /* Abstand */
+  border: 1px solid #bce8f1; /* Hellblauer Rand */
+}
+
+/* Titel für die Tabellenabschnitte */
+.table-title {
+  font-size: 1.5rem; /* Schriftgröße */
+  font-weight: bold; /* Fettschrift */
+  margin-bottom: 15px; /* Abstand nach unten */
+  color: #31708f; /* Dunkelblauer Text */
+  text-align: center; /* Zentriert */
+}
+
+/* Abstand zwischen Formular und Tabellen */
+.mt-4, .mt-5 {
+  margin-top: 30px;
+}
+/* Standard-Styling für Tabellenzeilen */
+.table tbody tr {
+  transition: background-color 0.3s ease; /* Sanfter Übergang */
+}
+
+/* Hintergrundfarbe beim Hover */
+.table tbody tr:hover {
+  background-color: #f2f2f2; /* Helles Grau */
+  cursor: pointer; /* Zeigt an, dass die Zeile interaktiv ist */
+}
+/* Standard-Schriftgröße */
+.table {
+  font-size: 1rem;
+  transition: font-size 0.3s ease; /* Sanfter Übergang */
+}
+
+/* Vergrößerte Schriftgröße */
+.table.zoomed {
+  font-size: 1.5rem; /* Vergrößerte Schriftgröße */
+}
+/* Standardzustand des Textes in der Registrierungsinformationen-Tabelle */
+.registration-table tbody tr td {
+  font-size: 1rem; /* Standard-Schriftgröße */
+  transition: transform 0.3s ease, font-size 0.3s ease; /* Sanfter Übergang */
+}
+
+/* Vergrößerung beim Hover */
+.registration-table tbody tr td:hover {
+  font-size: 1.5rem; /* Vergrößerte Schriftgröße */
+  transform: scale(1.1); /* Text leicht vergrößern */
+  background-color: #f9f9f9; /* Leicht hervorgehobener Hintergrund */
+  cursor: zoom-in; /* Mauszeiger ändert sich zu einer Lupe */
+}
+
+
+
+
+
